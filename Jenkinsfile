@@ -2,7 +2,9 @@ pipeline {
     agent {
       node {
         label "master"
-      } 
+        withCredentials([string(credentialsId: 'k8s_gateway', variable: 'gw')]) 
+      }
+
     }
     
     stages {
@@ -21,7 +23,7 @@ pipeline {
 
       stage('Kubernetes Deployment') {
         steps {
-          sh 'faas-cli deploy -f ./kachi-fxn.yml'
+          sh 'faas-cli deploy -f ./kachi-fxn.yml -gateway $gw' 
         }
       }
     } 

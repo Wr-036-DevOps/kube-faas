@@ -5,5 +5,5 @@ provider:
 functions:
   image-downloader-function:
     lang: python3
-    handler: ./image-downloader-function
-    image: akmba/image-downloader-function:latest
+    handler: ./kachi-fxn
+    image: akmba/kachi-fxn:latest
