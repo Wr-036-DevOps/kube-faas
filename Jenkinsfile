@@ -21,11 +21,12 @@ pipeline {
       }
 
       stage('Kubernetes Deployment') {
-        withCredentials([string(credentialsId: 'k8s_gateway', variable: 'gw')])
-        withAWS(credentials: 'AWS_CREDENTIALS', region: 'us-east-1') {
         steps {
+          withCredentials([string(credentialsId: 'k8s_gateway', variable: 'gw')]),
+          withAWS(credentials: 'AWS_CREDENTIALS', region: 'us-east-1') {
           sh 'faas-cli deploy -f ./kachi-fxn.yml -gateway $gw' 
-        }}
+        }
       }
     } 
   }
+}
