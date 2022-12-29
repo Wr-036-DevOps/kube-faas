@@ -1,0 +1,35 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: kachi-eks
+  region: us-east-1
+
+iam:
+  serviceRolePermissionsBoundary: "arn:aws:iam::536460581283:policy/boundaries/CustomPowerUserBound"
+
+managedNodeGroups:
+- name: nodegroup
+  tags: { ita_group: Wr-36 }
+  desiredCapacity: 2
+  instanceType: t2.medium
+  ssh:
+    allow: false
+  iam:
+    instanceRolePermissionsBoundary: "arn:aws:iam::536460581283:policy/boundaries/CustomPowerUserBound"
+# - name: newnodegroup
+#   tags: { ita_group: Wr-36 }
+#   desiredCapacity: 2
+#   instanceType: t2.medium
+#   ssh:
+#     allow: false
+#   iam:
+#     instanceRolePermissionsBoundary: "arn:aws:iam::536460581283:policy/boundaries/CustomPowerUserBound"
+#     attachPolicyARNs:
+#       - arn:aws:iam::aws:policy/AmazonS3FullAccess
+#       - arn:aws:iam::aws:policy/AmazonSQSFullAccess
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["api", "audit", "controllerManager"]
+availabilityZones: ['us-east-1a', 'us-east-1b']
+
