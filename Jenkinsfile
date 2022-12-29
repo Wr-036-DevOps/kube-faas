@@ -1,8 +1,7 @@
 pipeline {
     agent {
       node {
-        label "master"
-        withCredentials([string(credentialsId: 'k8s_gateway', variable: 'gw')]) 
+        label "master" 
       }
 
     }
@@ -22,9 +21,11 @@ pipeline {
       }
 
       stage('Kubernetes Deployment') {
+        withCredentials([string(credentialsId: 'k8s_gateway', variable: 'gw')])
+        withAWS(credentials: 'AWS_CREDENTIALS', region: 'us-east-1') {
         steps {
           sh 'faas-cli deploy -f ./kachi-fxn.yml -gateway $gw' 
-        }
+        }}
       }
     } 
   }
