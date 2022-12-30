@@ -7,3 +7,5 @@ functions:
     lang: python3
     handler: ./kachi-fxn
     image: akmba/kachi-fxn:latest
+    environment:
+      PYTHONUNBUFFERED: "1"
