@@ -5,6 +5,7 @@ import os
 
 
 def handle(event):
+    print(event)
     event_dict = json.loads(event)
     # Extracting parameter from the SQS json mesage #Python dictionary
     data = event_dict["Records"][0]["body"]
