@@ -17,17 +17,11 @@ managedNodeGroups:
     allow: false
   iam:
     instanceRolePermissionsBoundary: "arn:aws:iam::536460581283:policy/boundaries/CustomPowerUserBound"
-# - name: newnodegroup
-#   tags: { ita_group: Wr-36 }
-#   desiredCapacity: 2
-#   instanceType: t2.medium
-#   ssh:
-#     allow: false
-#   iam:
-#     instanceRolePermissionsBoundary: "arn:aws:iam::536460581283:policy/boundaries/CustomPowerUserBound"
-#     attachPolicyARNs:
-#       - arn:aws:iam::aws:policy/AmazonS3FullAccess
-#       - arn:aws:iam::aws:policy/AmazonSQSFullAccess
+    attachPolicyARNs:
+      - arn:aws:iam::aws:policy/AmazonS3FullAccess
+      - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+      - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+      - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
 cloudWatch:
   clusterLogging:
     enableTypes: ["api", "audit", "controllerManager"]
