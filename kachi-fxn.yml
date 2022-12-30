@@ -9,3 +9,4 @@ functions:
     image: akmba/kachi-fxn:latest
     environment:
       PYTHONUNBUFFERED: "1"
+      write_debug: true
